@@ -4,12 +4,13 @@ import br.com.demo.annotation.ExceptionHandler;
 import br.com.demo.persistence.model.Professor;
 import br.com.demo.util.JsonUtil;
 import org.springframework.http.HttpEntity;
-import static org.springframework.http.HttpMethod.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
 import java.io.Serializable;
+
+import static org.springframework.http.HttpMethod.GET;
 
 public class ProfessorDAO implements Serializable {
 

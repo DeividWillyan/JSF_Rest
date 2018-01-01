@@ -1,6 +1,6 @@
 package br.com.demo.util;
 
-import static  br.com.demo.custom.CustomURLEncoderDecoder.*;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
@@ -8,6 +8,8 @@ import javax.faces.annotation.RequestCookieMap;
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import java.util.Map;
+
+import static br.com.demo.custom.CustomURLEncoderDecoder.decodeUTF8;
 
 public class JsonUtil {
 
@@ -28,6 +30,9 @@ public class JsonUtil {
         return headers;
     }
 
+    public HttpEntity tokenizedHttpEntityHeader() {
+        return new HttpEntity(createTokenizedHeader());
+    }
 
 
 }

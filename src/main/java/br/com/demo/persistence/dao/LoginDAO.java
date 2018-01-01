@@ -5,18 +5,16 @@ import br.com.demo.custom.CustomRestTemplate;
 import br.com.demo.persistence.model.support.Token;
 import br.com.demo.util.JsonUtil;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import javax.inject.Inject;
 import java.io.Serializable;
 
+import static br.com.demo.util.ApiUtil.*;
 import static org.springframework.http.HttpMethod.POST;
 
 public class LoginDAO implements Serializable {
 
-    private final String BASE_URL = "http://localhost:8085/login";
     private final CustomRestTemplate restTemplate;
 
     @Inject
@@ -31,7 +29,7 @@ public class LoginDAO implements Serializable {
     public Token loginReturningToken(String username, String password) {
         String loginJson = "{\"username\":" + addQuotes(username) + ",\"password\":" + addQuotes(password) + "}";
         ResponseEntity<Token> tokenResponseEntity = restTemplate
-                .exchange(BASE_URL, POST, new HttpEntity<>(loginJson, jsonUtil.createJsonHeader()), Token.class);
+                .exchange(LOGIN_URL, POST, new HttpEntity<>(loginJson, jsonUtil.createJsonHeader()), Token.class);
         return tokenResponseEntity.getBody();
     }
 
